@@ -6,7 +6,17 @@ mod Compilers.Chapter2.TestEval {
 
     @Test
     def testEval(): Unit \ Assert =
-        let t = (List#{I, I, I}, I, Nil);
-        let r = Eval.eval(p(), t);
-        assertEq(expected = (Nil, B, List#{I, O, O, O, O}), r)
+        List#{
+            (List#{I, I, I, I}, List#{I, O, O, O, O}),
+            (List#{I, I, O}, List#{I, I, I}),
+            (List#{I, O, I}, List#{I, I, O}),
+            (List#{I, O, O}, List#{I, O, I}),
+            (List#{O}, List#{I})
+        }
+            |> List.forEach(ts ->
+                let (in, out) = ts;
+                let t = (Nil, B, in);
+                let r = Eval.eval(p(), t);
+                assertEq(expected = (Nil, B, out), r)
+            )
 }
