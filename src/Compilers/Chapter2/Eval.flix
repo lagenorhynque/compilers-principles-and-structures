@@ -1,5 +1,6 @@
 pub mod Compilers.Chapter2.Eval {
     use Compilers.Chapter2.TM.{D, Delta, Program, Q, S, Tape}
+    use Compilers.Chapter2.TM.A
 
     def hd(l: List[S]): S =
         match l {
@@ -35,8 +36,10 @@ pub mod Compilers.Chapter2.Eval {
         let (lList, h, rList) = tape;
         match List.findLeft(entry -> fst(entry) == (q, h), delta) {
             case None => tape
-            case Some((_, (q2, s, d))) =>
-                exec(delta, q2, move(d, (lList, s, rList)))
+            case Some((_, (q2, A.Move(d)))) =>
+                exec(delta, q2, move(d, tape))
+            case Some((_, (q2, A.Write(s)))) =>
+                exec(delta, q2, (lList, s, rList))
         }
     pub def eval(program: Program, tape: Tape): Tape =
         let (state, delta) = program;
