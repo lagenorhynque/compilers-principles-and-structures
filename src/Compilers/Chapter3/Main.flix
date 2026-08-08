@@ -4,5 +4,5 @@ pub mod Compilers.Chapter3.Main {
 
     pub def main(): Unit \ {Console, Env, IO} =
         let fileName = Env.getArgs() |> List.head;
-        Option.foldLeft((_, f) -> Top.top(f), (), fileName)
+        Top.top(fileName)
 }

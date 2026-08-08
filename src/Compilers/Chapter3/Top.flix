@@ -1,7 +1,8 @@
 pub mod Compilers.Chapter3.Top {
     use Compilers.Chapter3.ReadString
     use Sys.Console
-    import java.io.{FileReader, PushbackReader}
+    import java.io.{FileReader, InputStreamReader, PushbackReader}
+    import java.lang.System
 
     def readAndPrintLoop(pr: PushbackReader): Result[ReadString.Error, Unit] \ {Console, IO} =
         forM(
@@ -11,7 +12,11 @@ pub mod Compilers.Chapter3.Top {
             _ <- readAndPrintLoop(pr)
         ) yield ()
 
-    pub def top(file: String): Unit \ {Console, IO} =
-        let pr = new PushbackReader(new FileReader(file));
+    pub def top(file: Option[String]): Unit \ {Console, IO} =
+        let pr =  Option.foldLeft((_, f) ->
+            new PushbackReader(new FileReader(f)),
+            new PushbackReader(new InputStreamReader(System.in)),
+            file
+        );
         readAndPrintLoop(pr) |> Result.getWithDefault(())
 }

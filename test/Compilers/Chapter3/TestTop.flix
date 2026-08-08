@@ -5,7 +5,7 @@ mod Compilers.Chapter3.TestTop {
 
     @Test
     def testTop(): Unit \ {Assert, IO} =
-        let (_, out) = handlePrintln(() -> Top.top("flix.toml"));
+        let (_, out) = handlePrintln(() -> Top.top(Some("flix.toml")));
         assertEq(
             expected = List#{
                 "[package]",
