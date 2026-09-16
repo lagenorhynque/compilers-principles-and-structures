@@ -2,5 +2,5 @@
 name        = "compilers-principles-and-structures"
 description = "test"
 version     = "0.1.0"
-flix        = "0.75.3"
+flix        = "0.76.0"
 authors     = ["Kent OHASHI"]
