@@ -9,9 +9,9 @@ mod Compilers.Chapter3.TestTop {
         assertEq(
             expected = List#{
                 "[package]",
-                "name",
+                "version",
                 "=",
-                "\"compilers-principles-and-structures\""
+                "\"0.1.0\""
             },
             List.take(4, out)
         )
@@ -23,13 +23,13 @@ mod Compilers.Chapter3.TestTop {
                 (f(), MutList.toList(buf))
             } with handler Console {
                 def readln(_) = ???
-                def print(s, _) = ???
-                def eprint(s, _) = ???
-                def println(s, resume) = {
+                def write(_s, _) = ???
+                def writeLine(s, resume) = {
                     MutList.push(s, buf);
                     resume()
                 }
-                def eprintln(s, _) = ???
+                def writeErr(_s, _) = ???
+                def writeErrLine(_s, _) = ???
             }
         }
 }
