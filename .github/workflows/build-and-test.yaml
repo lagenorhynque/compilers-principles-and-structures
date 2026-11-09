@@ -36,3 +36,10 @@ jobs:
 
       - name: Test
         run: java -jar flix.jar test
+
+      # `flix format` rewrites in place and says nothing, so the check is whether
+      # it had anything to rewrite.
+      - name: Check formatting
+        run: |
+          java -jar flix.jar format
+          git diff --exit-code
