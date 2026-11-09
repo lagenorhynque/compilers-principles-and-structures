@@ -20,9 +20,12 @@ pub mod Compilers.Chapter2.TM {
     pub type alias Program = (Q, Delta)
     pub type alias Tape = (List[S], S, List[S])
     pub def p(): Program =
-        (M, List#{
-            ((M, I), (M, O, L)),
-            ((M, O), (H, I, L)),
-            ((M, B), (H, I, L))
-        })
+        (
+            M,
+            List#{
+                ((M, I), (M, O, L)),
+                ((M, O), (H, I, L)),
+                ((M, B), (H, I, L))
+            }
+        )
 }

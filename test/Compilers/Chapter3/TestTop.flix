@@ -4,7 +4,7 @@ mod Compilers.Chapter3.TestTop {
     use Sys.Console
 
     @Test
-    def testTop(): Unit \ {Assert, IO} =
+    def testTop(): Unit \ { Assert, IO } =
         let (_, out) = handlePrintln(() -> Top.top("flix.toml"));
         assertEq(
             expected = List#{
@@ -22,13 +22,13 @@ mod Compilers.Chapter3.TestTop {
             run {
                 (f(), MutList.toList(buf))
             } with handler Console {
-                def readln(_) = ???
-                def write(_s, _) = ???
+                def readln(_)           = ???
+                def write(_s, _)        = ???
                 def writeLine(s, resume) = {
                     MutList.push(s, buf);
                     resume()
                 }
-                def writeErr(_s, _) = ???
+                def writeErr(_s, _)     = ???
                 def writeErrLine(_s, _) = ???
             }
         }

@@ -3,18 +3,18 @@ pub mod Compilers.Chapter2.Eval {
 
     def hd(l: List[S]): S =
         match l {
-            case Nil => S.B
+            case Nil    => S.B
             case h :: _ => h
         }
     def tl(l: List[S]): List[S] =
         match l {
-            case Nil => Nil
+            case Nil    => Nil
             case _ :: t => t
         }
     def cons(h: S, t: List[S]): List[S] =
         match (h, t) {
             case (S.B, nil) => nil
-            case (h2, t2) => h2 :: t2
+            case (h2, t2)   => h2 :: t2
         }
     def moveL(tape: Tape): Tape =
         let (lList, h, rList) = tape;
